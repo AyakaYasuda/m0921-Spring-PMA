@@ -17,17 +17,14 @@ public class EmployeeController {
 	@Autowired
 	iEmployeeRepository empRepo;
 
-//	@RequestMapping("/new")
 	@GetMapping("/new")
 	public String displayEmployeeForm(Model model) {
 		model.addAttribute("employee", new Employee());
-		return "employees/new-employee";
+		return "/employees/new-employee";
 	}
 	
-//	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@PostMapping("/save")
 	public String createEmployee(Employee employee, Model model) {
-	//this is where we save to database
 		empRepo.save(employee);
 		return "redirect:/employees/new";
 	}
