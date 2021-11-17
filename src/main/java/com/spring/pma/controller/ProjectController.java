@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.pma.dao.iEmployeeRepository;
 import com.spring.pma.dao.iProjectRepository;
+import com.spring.pma.entity.Employee;
 import com.spring.pma.entity.Project;
 
 
@@ -19,6 +21,9 @@ public class ProjectController {
 	
 	@Autowired
 	iProjectRepository proRepo;
+	
+	@Autowired
+	iEmployeeRepository empRepo;
 	
 	@GetMapping
 	public String displayProjects(Model model) {
@@ -31,6 +36,9 @@ public class ProjectController {
 //	@RequestMapping("/new")
 	@GetMapping("/new")
 	public String displayProjectForm(Model model) {
+		List<Employee> employees = empRepo.findAll();
+		model.addAttribute("employeeList",employees);
+		
 		model.addAttribute("project", new Project());
 		return "projects/new-project";
 	}
