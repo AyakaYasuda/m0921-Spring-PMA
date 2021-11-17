@@ -3,6 +3,7 @@ package com.spring.pma.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import com.spring.pma.dto.EmployeeProject;
 
 @Controller
 public class HomeController {
+	
+	@Value("${version}")
+	private String ver;
 	
 	@Autowired
 	iProjectRepository proRepo;
@@ -35,6 +39,8 @@ public class HomeController {
 		// [["label":"NOTSTARTED", "value":1] , ["label":"INPROGRESS, "value":1], ["label":"COMPLETED", "value":1]]
 		
 		model.addAttribute("projectStatusCount", jsonString);
+		
+		model.addAttribute("versionNumber", ver);
 		
 		return "main/home";
 	}
