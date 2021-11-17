@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 public class Project {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long projectId;
 	private String name;
 	private String stage; //INPROGRESS, NOTSTARTED, COMPLETED
